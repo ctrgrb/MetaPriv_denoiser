@@ -1,0 +1,29 @@
+{
+	"manifest_version": 3,
+	"name": "MetaPriv Denoiser",
+	"version": "1.0",
+	"description": "Removes noise from facebook feeds",
+	"permissions": ["tabs", "storage"],
+	"host_permissions": ["https://*.facebook.com/*"],
+	"background": {
+		"service_worker": "background.js"
+	},
+	"content_scripts": [
+		{
+			"matches": ["https://*.facebook.com/*"],
+			"js": ["contentScript.js"]
+		}
+	],
+	"action": {
+		"default_icon": {
+			"128": "icon128.png",
+			"48": "icon48.png",
+			"16": "icon16.png"
+		},
+		"default_popup": "popup.html",
+		"default_title": "MetaPriv Denoiser"
+	}
+	
+
+	//"externally_connectable": {"matches": ["https://*.facebook.com/*"]}
+}
