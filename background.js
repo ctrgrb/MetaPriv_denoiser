@@ -1,4 +1,3 @@
-
 chrome.tabs.onUpdated.addListener((tabId, tab) => {
 	
 	chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
