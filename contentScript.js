@@ -97,13 +97,38 @@ const links = [
 //console.log(request);*/
 (() => {
 	chrome.runtime.onMessage.addListener((obj, sender, response) => {
-		const {type, value} = obj;
-		const formmated_string = value.replaceAll(',', '').replaceAll('"', '').replaceAll("'", '')
-		const links = formmated_string.split('\n')
+		const {type} = obj;
+
+		chrome.storage.local.get(['key'], function(result) {
+		  console.log('Value currently is ' + result.key);
+		  const value = result.key;
+		  const formmated_string = value.replaceAll(',', '').replaceAll('"', '').replaceAll("'", '')
+			const links = formmated_string.split('\n')
+		  if ( type === "NEW"){
+				setInterval(function () {
+					const post_elements = Array.from(document.getElementsByClassName('x1ja2u2z xh8yej3 x1n2onr6 x1yztbdb'));
+
+					post_elements.forEach(post => {
+						const a = post.querySelectorAll('[role="link"]');
+						const link = a[0].getAttribute('href')
+						const format_link = link.split('?__cft__')[0]
+						if (links.indexOf( format_link ) != -1 ){
+							post.parentNode.removeChild(post)
+							console.log('Filtered post from '+format_link);
+						}
+						
+
+					});
+					console.log('   ');
+					//console.log('   ');
+				},3000);
+			}
+		});
+		
 
 		//console.log(typeof links);
 		//console.log(links);
-
+/*
 		if ( type === "NEW"){
 			setInterval(function () {
 			const post_elements = Array.from(document.getElementsByClassName('x1ja2u2z xh8yej3 x1n2onr6 x1yztbdb'));
@@ -115,15 +140,15 @@ const links = [
 				const format_link = link.split('?__cft__')[0]
 				if (links.indexOf( format_link ) != -1 ){
 					post.parentNode.removeChild(post)
-					console.log(format_link);
+					console.log('Filtered post from '+format_link);
 				}
 				
 
 			});
 			//console.log('   ');
-			console.log('   ');
+			//console.log('   ');
 		},3000);
-		}
+		}*/
 	});
 
 
