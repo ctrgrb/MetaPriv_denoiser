@@ -23,6 +23,7 @@
 		"default_popup": "popup.html",
 		"default_title": "MetaPriv Denoiser"
 	}
+
 	
 
 	//"externally_connectable": {"matches": ["https://*.facebook.com/*"]}
