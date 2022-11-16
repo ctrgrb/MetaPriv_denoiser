@@ -19,9 +19,5 @@
 				});
 				console.log('Denoiser working');			
 		});
-
 	},3000);
-		
-	//});
-
 })();
