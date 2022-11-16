@@ -1,21 +1,18 @@
-//document.getElementById('clickMe').addListener('click', doFunction());
 document.addEventListener('DOMContentLoaded', function() {
-  document.getElementById("clickMe").addEventListener('click', doFunction);
-
+    chrome.storage.local.get(['key'], 
+        function(result) {
+            document.getElementById("urls").innerHTML = result.key;
+        }
+    );
+    document.getElementById("start").addEventListener('click', doFunction);
+    document.getElementById("clear").addEventListener('click', 
+        function() {
+            document.getElementById("urls").innerHTML = "";
+        }
+    );
 });
 
 function doFunction(){
-  const infoDisplay = document.getElementById('urls').value; 
-  //console.log(infoDisplay);
-
-  chrome.storage.local.set({key: infoDisplay}, function() {
-    console.log('Value is set to ' + infoDisplay);
-  });
-
-  /*
-  chrome.runtime.sendMessage({data: infoDisplay}, function(response){
-    console.log("popup");
-    console.log(response);
-    console.log("popupdone");
-  });*/
+    const infoDisplay = document.getElementById('urls').value; 
+    chrome.storage.local.set({key: infoDisplay});
 }
