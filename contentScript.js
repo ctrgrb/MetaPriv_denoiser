@@ -5,15 +5,12 @@
 		  	const stuff = value.split('||');
 			const links = stuff[0].split('\n')
 			const words = stuff[1].split(';');
-			//console.log(links);
-			//console.log(words);
 			
 			const post_elements = Array.from(document.getElementsByClassName('x1ja2u2z xh8yej3 x1n2onr6 x1yztbdb'));
 
 			post_elements.forEach(post => {
 				const a = post.querySelectorAll('[role="link"]');
 				const post_text = post.innerText.toLowerCase();
-				//.replace(/\n/g, " ").replace(/Like/g, "").replace(/Share/g, "").replace(/Comment/g, "").replace(/comment/g, "").replace(/Suggested for you/g, "").replace(/shares/g, "").replace(/and/g, "").split(' ');
 				const link = a[0].getAttribute('href')
 				const format_link = link.split('?__cft__')[0]
 				if (links.indexOf( format_link ) != -1 ){
@@ -22,7 +19,6 @@
 				}
 				for (let i = 0; i < words.length; i++) {
 					if (post_text.includes(words[i])){
-						//console.log(post_text);
 						post.parentNode.removeChild(post);
 						console.log('Filtered post containing keyword: "'+words[i]+'"');
 					}
