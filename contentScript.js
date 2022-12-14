@@ -10,21 +10,23 @@
 
 			post_elements.forEach(post => {
 				const a = post.querySelectorAll('[role="link"]');
-				const post_text = post.innerText.toLowerCase();
 				const link = a[0].getAttribute('href')
 				const format_link = link.split('?__cft__')[0]
 				if (links.indexOf( format_link ) != -1 ){
 					post.parentNode.removeChild(post)
 					console.log('Filtered post from '+format_link);
-				}
-				for (let i = 0; i < words.length; i++) {
-					const word = words[i].replace("\n","");
-					if (word == ""){}
-					else if (post_text.includes(word)){
-						post.parentNode.removeChild(post);
-						console.log('Filtered post containing keyword: "'+word+'"');
+				}else{
+					const post_text = post.innerText.toLowerCase();
+					for (let i = 0; i < words.length; i++) {
+						const word = words[i].replace("\n","");
+						if (word == ""){}
+						else if (post_text.includes(word)){
+							post.parentNode.removeChild(post);
+							console.log('Filtered post containing keyword: "'+word+'"');
+						}
 					}
 				}
+				
 			});
 
 			console.log('Denoiser working');			
