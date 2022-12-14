@@ -2,7 +2,7 @@
 	setInterval(function () {
 		chrome.storage.local.get(['key'], function(result) {
 		  	const value = result.key;
-		  	const stuff = value.split('||');
+		  	const stuff = value.split('\n||\n');
 			const links = stuff[0].split('\n')
 			const words = stuff[1].split(';');
 			
@@ -18,9 +18,11 @@
 					console.log('Filtered post from '+format_link);
 				}
 				for (let i = 0; i < words.length; i++) {
-					if (post_text.includes(words[i])){
+					const word = words[i].replace("\n","");
+					if (word == ""){}
+					else if (post_text.includes(word)){
 						post.parentNode.removeChild(post);
-						console.log('Filtered post containing keyword: "'+words[i]+'"');
+						console.log('Filtered post containing keyword: "'+word+'"');
 					}
 				}
 			});
