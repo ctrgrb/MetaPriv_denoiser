@@ -5,8 +5,15 @@
 		  	const stuff = value.split('\n||\n');
 			const links = stuff[0].split('\n')
 			const words = stuff[1].split(';');
-			
-			const post_elements = Array.from(document.getElementsByClassName('x1ja2u2z xh8yej3 x1n2onr6 x1yztbdb'));
+			var post_elements = []
+
+			if (window.location.href == "https://www.facebook.com/"){
+				post_elements = Array.from(document.getElementsByClassName('x1ja2u2z xh8yej3 x1n2onr6 x1yztbdb'));
+				console.log('Denoiser working on main page');
+			} else {
+				post_elements = Array.from(document.getElementsByClassName('x1jx94hy x1lq5wgf xgqcy7u x30kzoy x9jhf4c x78zum5 x6ikm8r x10wlt62 x1n2onr6 xzueoph'));
+				console.log('Denoiser working on video page');
+			}
 
 			post_elements.forEach(post => {
 				const a = post.querySelectorAll('[role="link"]');
@@ -29,7 +36,7 @@
 				
 			});
 
-			console.log('Denoiser working');			
+			
 		});
 	},3000);
 })();
